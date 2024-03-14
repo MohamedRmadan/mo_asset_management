@@ -12,6 +12,7 @@
         'views/asset_view.xml',
         'views/tag_view.xml',
         'views/asset_loan_view.xml',
+        'views/asset_move_view.xml',
         'views/category_group_view.xml',
         'views/make_order_view.xml',
         'data/ir_sequence.xml',

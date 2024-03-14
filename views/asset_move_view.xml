@@ -1,0 +1,51 @@
+<odoo>
+    <record id = "asset_move_view_search" model = "ir.ui.view">
+        <field name="name">asset </field>
+        <field name="model">asset.move</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="current_location_id"/>
+                <field name="new_location_id"/>
+            </search>
+        </field>
+    </record>
+    <record id="asset_move_view_form" model="ir.ui.view">
+        <field name="name">asset move form</field>
+        <field name="model">asset.move</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                            <field name="asset_id"/>
+                            <field name="move_date"/>
+                            <field name="current_location_id" readonly="1"/>
+                            <field name="new_location_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="asset_move_view_tree" model="ir.ui.view">
+        <field name="name">asset move tree</field>
+        <field name="model">asset.move</field>
+        <field name="arch" type="xml">
+            <tree class="custom_table">
+                <field name="asset_id"/>
+                <field name="move_date"/>
+                <field name="current_location_id" />
+                <field name="new_location_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="asset_move_action" model="ir.actions.act_window">
+        <field name="name">Asset Move</field>
+        <field name="res_model">asset.move</field>
+    </record>
+
+    <menuitem
+        id="asset_move_menu_item"
+        name="Asset Move"
+        parent="order_menu"
+        action="asset_move_action"
+    />
+</odoo>

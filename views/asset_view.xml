@@ -58,7 +58,7 @@
                             </group>
                         </group>
                         <group string="Location">
-                            <field name="location_id"/>
+                            <field name="location_id" readonly="1"/>
                             <field name="custody_id" readonly="1"/>
                         </group>
                         <group string="Other">

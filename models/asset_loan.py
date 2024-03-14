@@ -62,11 +62,6 @@ class AssetLoan(models.Model):
             else:
                 raise odoo.exceptions.ValidationError('This asset with another one')
 
-    def change_custody(self):
-        for asset_id in self:
-            print(asset_id)
-            asset_id.asset_id.custody_id = asset_id.custody_id.id
-
     def action_running(self):
         for asset_id in self:
             if not asset_id.asset_id.custody_id:
