@@ -11,6 +11,7 @@ class AssetMove(models.Model):
     asset_id = fields.Many2one('asset', domain="[('custody_id', '=', None), ('status', '=', 'available')]")
     move_date = fields.Date(default=datetime.now())
     current_location_id = fields.Many2one("res.company", string="Current Location", default='_set_current_location')
+
     new_location_id = fields.Many2one("res.company", "Destination")
 
     @api.model
@@ -25,4 +26,4 @@ class AssetMove(models.Model):
         self.current_location_id = self.asset_id.location_id.id
 
     def _set_current_location(self):
-        return self.asset_id.location_id.id
+       return self.asset_id.location_id.id

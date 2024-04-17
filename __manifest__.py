@@ -18,8 +18,9 @@
         'data/ir_sequence.xml',
         'report/asset_qr.xml',
         'report/asset_qr_template.xml',
-        # 'report/asset_loan_rep.xml',
-        # 'report/asset_loan_rep_template.xml',
+        'report/asset_move_rep.xml',
+        'report/asset_loan_rep.xml',
+        'report/asset_rep.xml',
     ],
     'assets': {
         'web.assets_backend': ['mo_asset_management/static/src/css/property.css']

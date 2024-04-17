@@ -67,6 +67,31 @@
                             <field name="status" readonly="1"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Loans">
+                            <field name="asset_loans">
+                                <tree>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="custody_id"/>
+                                    <field name="loan_accepted"/>
+                                    <field name="loan_started"/>
+                                    <field name="loan_returned"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Moves">
+                            <field name="asset_moves">
+                                <tree>
+                                    <field name="move_date"/>
+                                    <field name="current_location_id"/>
+                                    <field name="new_location_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

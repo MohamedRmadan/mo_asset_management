@@ -48,6 +48,9 @@ class Asset(models.Model):
     current_price = fields.Float(compute='_compute_current_price')
     asset_qr_code = fields.Binary("QR Code", compute='generate_asset_qr_code')
 
+    asset_moves = fields.One2many('asset.move', 'asset_id')
+    asset_loans = fields.One2many('asset.loan', 'asset_id')
+
     def generate_asset_qr_code(self):
         for rec in self:
             if qrcode and base64:

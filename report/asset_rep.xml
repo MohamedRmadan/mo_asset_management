@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="asset_rep" model="ir.actions.report">
+        <field name="name">Asset Report</field>
+        <field name="model">asset</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mo_asset_management.report_asset_template</field>
+        <field name="binding_model_id" ref="model_asset"/>
+        <field name="binding_type">report</field>
+    </record>
+    <template id="report_asset_template">
+    <t t-call="web.html_container">
+        <t t-call="web.external_layout">
+                <style>
+                    div {
+                    direction: RTL;
+                    }
+                </style>
+                <div class="page">
+                    <style>
+                        h1 {
+                            text-align: center;
+                        }
+
+                    </style>
+                    <h1>بيانات الاصول</h1>
+                    <br/>
+                    <br/>
+                    <h6>
+                        الفرع الحالي:
+                        <span t-esc="env.user.company_id.name"/>
+                    </h6>
+                    <h6>
+                        وقت الطباعة:
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                    </h6>
+                    <style>
+                        table {
+                            border-collapse: collapse;
+                            margin: 25px 0;
+                            font-size: 0.9em;
+                            font-family: sans-serif;
+                            min-width: 400px;
+                            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+                        }
+                        thead tr {
+                            background-color: #009879;
+                            color: #ffffff;
+                            text-align: left;
+                        }
+                        th,
+                        td {
+                            padding: 12px 15px;
+                        }
+                        tbody tr {
+                            border-bottom: 1px solid #dddddd;
+                        }
+
+                        tbody tr:nth-of-type(even) {
+                            background-color: #f3f3f3;
+                        }
+
+                        tbody tr:last-of-type {
+                            border-bottom: 2px solid #009879;
+                        }
+                    </style>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>السيريال</th>
+                                <th>الفئة</th>
+                                <th>الاصل</th>
+                                <th>سعر الشراء</th>
+                                <th>السعر الحالي</th>
+                                <th>الفرع</th>
+                                <th>الحالة</th>
+                                <th>العهدة</th>
+                                <th>الملاحظات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="o">
+                                <tr>
+                                    <td><t t-esc="o.serial"/></td>
+                                    <td><t t-esc="o.category_id.name"/></td>
+                                    <td><t t-esc="o.name"/></td>
+                                    <td><t t-esc="o.price"/></td>
+                                    <td><t t-esc="o.current_price"/></td>
+                                    <td><t t-esc="o.location_id.name"/></td>
+                                    <td><t t-esc="o.status"/></td>
+                                    <td><t t-esc="o.custody_id.name"/></td>
+                                    <td>----------------</td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+        </t>
+    </t>
+    </template>
+</odoo>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="asset_move_rep" model="ir.actions.report">
+        <field name="name">move Report</field>
+        <field name="model">asset.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mo_asset_management.report_asset_move_template</field>
+<!--        <field name="report_file">mo_asset_management.report_asset_move_rep</field>-->
+        <field name="binding_model_id" ref="model_asset_move"/>
+        <field name="binding_type">report</field>
+    </record>
+    <template id="report_asset_move_template">
+    <t t-call="web.html_container">
+        <t t-call="web.external_layout">
+            <style>
+                h1 {
+                    text-align: center;
+                }
+
+            </style>
+            <h1>طلب نقل اصول ثابتة</h1>
+            <br/>
+            <br/>
+            <h6>
+                الفرع الحالي:
+                <span t-esc="env.user.company_id.name"/>
+            </h6>
+            <h6>
+                وقت الطباعة:
+                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+            </h6>
+            <br/>
+            <br/>
+            <style>
+                div {
+                    direction : RTL;
+                    margin: auto;
+                }
+            </style>
+            <div class="page">
+                <style>
+                    h1 {
+                        text-align: center;
+                    }
+                    table {
+                        margin-right: auto;
+                        margin-left: auto;
+                        border-collapse: collapse;
+                        font-size: 0.9em;
+                        width: 100%;
+                        font-family: sans-serif;
+                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+                    }
+                    tr {
+                        background-color: #009879;
+                        color: #00000;
+                        text-align: center;
+                    }
+                    td {
+                        color: #00000;
+                        text-align: center;
+                    }
+                    th {
+                        color: #FFFFFF;
+                        text-align: center;
+                    }
+                    th{
+                        color: #FFFFFF;
+                        padding: 12px 15px;
+                    }
+                    tbody tr {
+                        background-color: #FFFFFF;
+                        border-bottom: 1px solid #dddddd;
+                    }
+
+                </style>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الاصل</th>
+                            <th>تاريخ النقل</th>
+                            <th>الموقع القديم</th>
+                            <th>الموقع الجديد</th>
+                            <th>الملاحظات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="o">
+                            <tr>
+                                <td><t t-esc="o.asset_id.name"/></td>
+                                <td><t t-esc="o.move_date"/></td>
+                                <td><t t-esc="o.current_location_id.name"/></td>
+                                <td><t t-esc="o.new_location_id.name"/></td>
+                                <td>----------------</td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <table class="bottom">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>الصفة</th>
+                            <th>التوقيع</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>----------------</td>
+                            <td>----------------</td>
+                            <td>----------------</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </t>
+    </template>
+</odoo>
