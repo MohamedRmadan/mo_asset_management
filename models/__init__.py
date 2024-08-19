@@ -7,3 +7,4 @@ from . import category_group
 from . import make_order
 from . import asset_loan
 from . import asset_move
+from . import asset_change_status

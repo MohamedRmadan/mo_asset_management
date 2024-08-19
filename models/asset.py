@@ -50,6 +50,7 @@ class Asset(models.Model):
 
     asset_moves = fields.One2many('asset.move', 'asset_id')
     asset_loans = fields.One2many('asset.loan', 'asset_id')
+    asset_change_status = fields.One2many('asset.change.status', 'asset_id')
 
     def generate_asset_qr_code(self):
         for rec in self:

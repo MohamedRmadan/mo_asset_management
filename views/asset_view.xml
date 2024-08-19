@@ -91,6 +91,16 @@
                                 </tree>
                             </field>
                         </page>
+
+                        <page string="Change Status">
+                            <field name="asset_change_status">
+                                <tree>
+                                    <field name="action_date"/>
+                                    <field name="current_status"/>
+                                    <field name="new_status"/>
+                                </tree>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>

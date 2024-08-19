@@ -7,6 +7,7 @@
         <field name="report_name">mo_asset_management.report_asset_loan_template</field>
 <!--        <field name="report_file">mo_asset_management.report_asset_loan_rep</field>-->
         <field name="binding_model_id" ref="model_asset_loan"/>
+        <field name="model_id" ref="model_asset_loan"/>
         <field name="binding_type">report</field>
     </record>
     <template id="report_asset_loan_template">

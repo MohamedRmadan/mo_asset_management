@@ -96,7 +96,7 @@
                         </t>
                     </tbody>
                 </table>
-                <table class="bottom">
+                <table style="position:absolute;top:850px; page-break-inside: avoid;">
                     <thead>
                         <tr>
                             <th>الاسم</th>
