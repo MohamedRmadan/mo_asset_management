@@ -58,13 +58,13 @@
                             </group>
                         </group>
                         <group string="Location">
-                            <field name="location_id" readonly="1"/>
+                            <field name="location_id" />
                             <field name="custody_id" readonly="1"/>
                         </group>
                         <group string="Other">
                             <field name="tag_ids" widget="many2many_tags"/>
                             <field name="description"/>
-                            <field name="status" readonly="1"/>
+                            <field name="status"/>
                         </group>
                     </group>
                     <notebook>
@@ -123,6 +123,7 @@
                 <field name="dep_fin_value" optional="1"/>
                 <field name="dep_period" optional="1"/>
                 <field name="tag_ids" optional="1"/>
+                <field name="quantity" optional="1"/>
             </tree>
         </field>
     </record>
@@ -131,10 +132,53 @@
         <field name="res_model">asset</field>
     </record>
 
+    <record id="asset_location_graph" model="ir.ui.view" >
+        <field name="name">Asset Location Graph</field>
+        <field name="model">asset</field>
+        <field name="type">graph</field>
+        <field name="arch" type="xml">
+            <graph string="Assets Location" type="pie" >
+                <field name="location_id" group="true"/>
+            </graph>
+        </field>
+    </record>
+    <record id="asset_location_price_graph" model="ir.ui.view" >
+        <field name="name">Asset Price Location Graph</field>
+        <field name="model">asset</field>
+        <field name="type">graph</field>
+        <field name="arch" type="xml">
+            <graph string="Assets Price Location" type="pie" >
+                <field name="price" type="measure"/>
+                <field name="location_id" group="true"/>
+            </graph>
+        </field>
+    </record>
+    <record id="asset_status_graph" model="ir.ui.view" >
+        <field name="name">Asset Status Graph</field>
+        <field name="model">asset</field>
+        <field name="type">graph</field>
+        <field name="arch" type="xml">
+            <graph string="Assets Status" type="pie" >
+                <field name="status"/>
+            </graph>
+        </field>
+    </record>
+    <record id="asset_custody_graph" model="ir.ui.view" >
+        <field name="name">Asset Custody Graph</field>
+        <field name="model">asset</field>
+        <field name="type">graph</field>
+        <field name="arch" type="xml">
+            <graph string="Assets Custody" type="pie" >
+                <field name="custody_id"/>
+            </graph>
+        </field>
+    </record>
+
     <menuitem
         id="asset_menu_item"
         name="Assets"
-        parent="assets_menu"
+        parent="asset_management_root_menu"
         action="asset_action"
+        sequence="1"
     />
 </odoo>

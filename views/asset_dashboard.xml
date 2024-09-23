@@ -1,0 +1,60 @@
+<odoo>
+    <record id="asset_location_graph_action" model="ir.actions.act_window">
+       <field name="name">Asset Location Graph</field>
+       <field name="res_model">asset</field>
+       <field name="view_mode">graph</field>
+       <field name="view_id" ref="asset_location_graph"/>
+   </record>
+    <record id="asset_status_graph_action" model="ir.actions.act_window">
+       <field name="name">Asset Status Graph</field>
+       <field name="res_model">asset</field>
+       <field name="view_mode">graph</field>
+       <field name="view_id" ref="asset_status_graph"/>
+    </record>
+    <record id="asset_price_location_graph_action" model="ir.actions.act_window">
+       <field name="name">Asset Price for branches Graph</field>
+       <field name="res_model">asset</field>
+       <field name="view_mode">graph</field>
+       <field name="view_id" ref="asset_location_price_graph"/>
+    </record>
+    <record id="asset_custody_graph_action" model="ir.actions.act_window">
+       <field name="name">Asset Price for branches Graph</field>
+       <field name="res_model">asset</field>
+       <field name="view_mode">graph</field>
+       <field name="view_id" ref="asset_custody_graph"/>
+    </record>
+
+    <record model="ir.ui.view" id="mo_asset_management">
+       <field name="name">Simple Dashboard</field>
+       <field name="model">board.board</field>
+       <field name="type">form</field>
+       <field name="arch" type="xml">
+           <form string="Assets Dashboard">
+               <board style="1-1">
+                   <column>
+                       <action name="%(mo_asset_management.asset_location_graph_action)d" string="مواقع الاصول"/>
+                       <action name="%(mo_asset_management.asset_status_graph_action)d" string="حالات الاصول"/>
+                   </column>
+                   <column>
+                       <action name="%(mo_asset_management.asset_price_location_graph_action)d" string="تكلفة اصول الفروع"/>
+                       <action name="%(mo_asset_management.asset_custody_graph_action)d" string="الاصول العهدة"/>
+                   </column>
+               </board>
+           </form>
+       </field>
+   </record>
+    <record model="ir.actions.act_window" id="open_simple_dashboard_action">
+        <field name="name">Assets Dashboard</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="mo_asset_management"/>
+    </record>
+    <menuitem
+        name="Dashboard"
+        parent="asset_management_root_menu"
+        action="open_simple_dashboard_action"
+        sequence="0"
+        id="dashboard_menu"
+    />
+</odoo>

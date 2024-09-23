@@ -4,7 +4,10 @@
     'category' : '',
     'version' : "17.0.0.1.0",
     'depends' : [
-        'base', 'hr'
+        'base',
+        'hr',
+        'sale',
+        'board'
     ],
     'data' : [
         'security/ir.model.access.csv',
@@ -22,6 +25,7 @@
         'report/asset_move_rep.xml',
         'report/asset_loan_rep.xml',
         'report/asset_rep.xml',
+        'views/asset_dashboard.xml'
     ],
     'assets': {
         'web.assets_backend': ['mo_asset_management/static/src/css/property.css']
