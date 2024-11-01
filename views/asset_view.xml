@@ -59,7 +59,7 @@
                         </group>
                         <group string="Location">
                             <field name="location_id" />
-                            <field name="custody_id" readonly="1"/>
+                            <field name="custody_id"/>
                         </group>
                         <group string="Other">
                             <field name="tag_ids" widget="many2many_tags"/>
@@ -110,14 +110,19 @@
         <field name="name">asset tree</field>
         <field name="model">asset</field>
         <field name="arch" type="xml">
-            <tree default_order='create_date desc' class="custom_table">
+            <tree default_order='create_date desc' class="custom_table"  >
                 <field name="serial" />
                 <field name="name"/>
                 <field name="category_id"/>
-                <field name="location_id"/>
+                <field name="location_id" />
                 <field name="custody_id"/>
                 <field name="current_price"/>
-                <field name="status" />
+                <field name="status"
+                       widget="badge"
+                       decoration-success="status == 'available'"
+                       decoration-muted="status == 'booked'"
+                       decoration-danger="status == 'workshop'"
+                       decoration-warning="status == 'loaned'"/>
                 <field name="price" optional="1"/>
                 <field name="buy_date" optional="1"/>
                 <field name="dep_fin_value" optional="1"/>

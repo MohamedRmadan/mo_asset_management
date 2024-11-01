@@ -1,0 +1,22 @@
+<odoo>
+    <record id="asset_category" model="ir.module.category">
+        <field name="name">Asset Management</field>
+    </record>
+    <record id="asset_manager_group" model="res.groups">
+        <field name="name">Asset Manager</field>
+        <field name="category_id" ref="mo_asset_management.asset_category"/>
+    </record>
+    <record id="asset_handler_group" model="res.groups">
+        <field name="name">Asset Handler</field>
+        <field name="category_id" ref="mo_asset_management.asset_category"/>
+    </record>
+    <record id="asset_company_record_rule" model="ir.rule">
+        <field name="name">asset_by_company</field>
+        <field name="model_id" ref="mo_asset_management.model_asset"/>
+        <field name="domain_force"> [('location_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

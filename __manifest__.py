@@ -10,6 +10,7 @@
         'board'
     ],
     'data' : [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/base_menu.xml',
         'views/asset_view.xml',

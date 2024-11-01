@@ -28,7 +28,7 @@ class Asset(models.Model):
     dep_period = fields.Integer(default=36)
     location_id = fields.Many2one("res.company")
     category_id = fields.Many2one("product.category")
-    custody_id = fields.Many2one("hr.employee", readonly=True)
+    custody_id = fields.Many2one("hr.employee")
     sell_price = fields.Float()
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -87,6 +87,7 @@ class Asset(models.Model):
     @api.onchange('price', 'buy_date', 'dep_period')
     def _compute_current_price(self):
         for rec in self:
+            print(self.env.user.company_id)
             if rec.dep_period > 0 and rec.price > 0:
                 current_price = rec.price - ((rec.price / rec.dep_period) * (
                         (datetime.now().year - rec.buy_date.year) * 12
@@ -108,4 +109,10 @@ class Asset(models.Model):
         for rec in self:
             rec.state = 'stopped'
 
-
+    @api.onchange('custody_id')
+    def set_status(self):
+        for rec in self:
+            if rec.custody_id:
+                rec.status = "loaned"
+            else:
+                rec.status = "available"
